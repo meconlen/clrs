@@ -1,0 +1,22 @@
+name: build-document
+run-name: Build Document
+on: 
+  push:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+jobs:
+  run-build-document:
+    runs-on: ubuntu-latest
+    container: texlive/texlive
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        run: latexmk -pdf 
+      - name: Archive document
+        uses: actions/upload-artifact@v4
+        with: 
+         name: Document
+         path: document.pdf

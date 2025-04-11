@@ -1,0 +1,21 @@
+name: create-release
+run-name: Create Release
+on: 
+  push:
+   tags:
+   - 'v*'
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    container: texlive/texlive
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        run: latexmk -pdf 
+      - name: Create Release
+        uses: actions/release-action@v1
+        with:
+         artifacts: "document.pdf"

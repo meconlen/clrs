@@ -1,0 +1,174 @@
+\documentclass[oneside]{book}
+\usepackage{geometry}
+\geometry{letterpaper}
+\usepackage[parfill]{parskip} 
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+
+\usepackage{amsthm, amsmath, amssymb, amsfonts}
+\newtheorem{problem}{Problem}
+
+\pagestyle{fancy}
+\fancypagestyle{plain}{}
+
+\usepackage[
+	backend=biber,
+	style=ieee
+]{biblatex}
+\addbibresource{document.bib}
+
+\usepackage{makeidx}
+\makeindex
+\usepackage[acronym]{glossaries}
+\makeglossaries
+
+\usepackage[toc,page]{appendix}
+
+\usepackage[
+	colorlinks,
+	linkcolor=blue,
+	citecolor=blue,urlcolor=blue
+]{hyperref}
+
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single
+}
+\lstset{style=mystyle}
+
+
+\begin{document}
+
+% set the footer 
+% clear the footer
+\fancyhf{} 
+% remove the horizontal line below the header. Remove the line below if you want header
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{CLRS Problems}
+\fancyfoot[C]{\thepage}
+%\fancyfoot[R]{}
+
+%\maketitle
+\frontmatter
+\begin{titlepage}
+	\vspace{1 in}
+	\centering
+	{\LARGE {Title}\par}
+	\vspace{1 cm}
+	Author\par 
+	Mike Conlen \texttt{mike@conlen.org}\par
+	\vspace{1 cm}
+	\today
+\end{titlepage}
+
+\thispagestyle{empty}
+\textbf{Author}: Mike Conlen \\
+% Contributors go in alphabetical order by last name
+
+% this alternates pipe and the letter L in lower case. In many fonts these look the same 
+\begin{table}[ht]
+	\begin{tabular}{l l l}
+		\toprule
+		Version & Date & Notes \\
+		\hline
+		&& \\
+		\bottomrule
+	\end{tabular}
+	\caption{Change History}\label{tab:history}
+\end{table}
+
+\tableofcontents
+\lstlistoflistings
+
+\mainmatter
+\begin{spacing}{1.618}
+\chapter{The Role of Algorithms in Computing}
+\section{Algorithms}
+
+\begin{problem}[1.1]
+Describe your own real-world example that requires sorting. Describe one that requires finding the shortest distance between two points.
+\begin{proof}[Solution] \ \par
+	\begin{enumerate}
+		\item Putting cards into order in a bridge hand. 
+		\item Using the triangle inequality. 
+	\end{enumerate}
+\end{proof}
+\end{problem}
+
+\begin{problem}[1.2]
+	Other than speed, what other measures of efficiency might you need to consider in a real-world setting?
+	\begin{proof}[Solution]
+		Minimizing waste from raw materials when deciding how to cut pieces from a a set of larger pieces of material. 
+	\end{proof}
+\end{problem}
+
+\begin{problem}[1.3]
+	Select a data structure that you have seen, and discuss its strengths and limitations.
+	\begin{proof}[Solution]
+		An array. When adding elements into the middle of an array you may need to copy the entire array into a larger area of memory. 
+	\end{proof}
+\end{problem}
+
+\begin{problem}[1.4]
+	How are the shortest-path and traveling-salesperson problems given above similar?
+	How are they different?
+	\begin{proof}[Solution]
+		The shortest path problem requires only the start and end points be visited within a graph. The traveling salesperson problem requires that a larger sets of nodes be visited and the first and last nodes are the same. 
+	\end{proof}
+\end{problem}
+
+\begin{problem}[1.5]
+		Suggest a real-world problem in which only the best solution will do. Then come up with one in which the best solution is good enough.
+	\begin{proof}[Solution]
+		Sorting words for a dictionary requires only the best solution since an approximate solution makes it difficult for a user to find the words they are searching for. Finding a driving route requires only an approximate solution since the user ultimately arrives at their destination. 
+	\end{proof}
+\end{problem}
+
+\begin{problem}[1.6]
+	Describe a real-world problem in which sometimes the entire input is available before you need to solve the problem, but other times the input is not entirely available in advance and arrives over time.
+	\begin{proof}[Solution]
+		A problem where the entire input is available before solving is building a lego kit. A problem where the entire input isn't available is creating online dictionaries as new words are created and added to an existing sorted set of words on a regular basis. 
+	\end{proof}
+\end{problem}
+
+
+\appendix
+\chapter{Appendix One}
+
+\begin{problem}[]
+	\begin{proof}[Solution]
+
+	\end{proof}
+\end{problem}
+
+\end{spacing}
+\backmatter
+
+\addcontentsline{toc}{chapter}{Acronyms}
+\printglossary[type=\acronymtype]
+\clearpage
+
+\addcontentsline{toc}{chapter}{Glossary}
+\printglossary
+\clearpage
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography
+\clearpage
+
+\printindex
+
+\end{document}  

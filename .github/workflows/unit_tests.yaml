@@ -17,13 +17,11 @@ jobs:
         run: sudo apt-get update -y
       - name: install googletest
         run: sudo apt-get install libgtest-dev
-      - name: code 
-        run: cd code
       - name: autoreconf
-        run: autoreconf -vfi
+        run: cd code && autoreconf -vfi
       - name: configure
-        run: ./configure
+        run: cd code && ./configure
       - name: build
-        run: make -j 4
+        run: cd code && make -j 4
       - name: test
-        run: src/test
+        run: code/src/test

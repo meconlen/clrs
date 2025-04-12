@@ -9,6 +9,9 @@
 
 \usepackage{amsthm, amsmath, amssymb, amsfonts}
 \newtheorem{problem}{Problem}
+\newtheorem{definition}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
 
 \pagestyle{fancy}
 \fancypagestyle{plain}{}
@@ -57,7 +60,7 @@
 \fancyhf{} 
 % remove the horizontal line below the header. Remove the line below if you want header
 \renewcommand{\headrulewidth}{0pt}
-\fancyfoot[L]{CLRS Problems}
+\fancyfoot[L]{CLRS Notes and Problems}
 \fancyfoot[C]{\thepage}
 %\fancyfoot[R]{}
 
@@ -66,7 +69,7 @@
 \begin{titlepage}
 	\vspace{1 in}
 	\centering
-	{\LARGE {Title}\par}
+	{\LARGE {CLRS Notes and Problems}\par}
 	\vspace{1 cm}
 	Author\par 
 	Mike Conlen \texttt{mike@conlen.org}\par
@@ -97,6 +100,18 @@
 \begin{spacing}{1.618}
 \chapter{The Role of Algorithms in Computing}
 \section{Algorithms}
+
+\begin{definition}[algorithm]\index{algorithm}
+	A well-defined computational procedure that takes some value or set of values as input and produces some value or set of values as output in a finite amount of time.
+\end{definition}
+
+\begin{definition}[data structure]\index{data structure}
+	A way to store and organize data in order to facilitate access and modifications.
+\end{definition}
+
+\begin{definition}[online algorithm]\index{algorithm!online}
+	An algorithm which receives input over time.
+\end{definition}
 
 \begin{problem}[1.1-1]
 Describe your own real-world example that requires sorting. Describe one that requires finding the shortest distance between two points.

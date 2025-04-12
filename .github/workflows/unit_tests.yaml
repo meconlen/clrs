@@ -15,15 +15,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: udpate packages
         run: sudo apt-get update -y
-      - name: install googletest
-        run: sudo apt-get install libgtest-dev
-      - name: code 
-        run: cd code
+      - name: install Google Test and Google Benchmark
+        run: sudo apt-get -y install libgtest-dev libbenchmark-dev
+      - name: Install Boost
+        run: sudo apt-get -y install libboost-dev
       - name: autoreconf
-        run: autoreconf -vfi
+        run: cd code && autoreconf -vfi
       - name: configure
-        run: ./configure
+        run: cd code && ./configure
       - name: build
-        run: make -j 4
+        run: cd code && make -j 4
       - name: test
-        run: src/test
+        run: code/src/test

@@ -1,0 +1,28 @@
+name: unit-tests
+run-name: Unit Test Action
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  push:
+    branches:
+      - main
+      - dev
+jobs:
+  run-unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: udpate packages
+        run: sudo apt-get update -y
+      - name: install googletest
+        run: sudo apt-get install libgtest-dev
+      - name: code 
+        run: cd code
+      - name: autoreconf
+        run: autoreconf -vfi
+      - name: configure
+        run: ./configure
+      - name: build
+        run: make -j 4
+      - name: test
+        run: src/test

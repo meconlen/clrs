@@ -18,4 +18,4 @@ jobs:
       - name: Create Release
         uses: actions/release-action@v1
         with:
-         artifacts: "document.pdf"
+         artifacts: "clrs_problems.pdf"

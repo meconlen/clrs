@@ -34,7 +34,7 @@
 	colorlinks,
 	linkcolor=blue,
 	citecolor=blue,urlcolor=blue
-]{hyperref}
+]{hyperref} 
 
 \usepackage{listings}
 \lstdefinestyle{mystyle}{
@@ -51,7 +51,17 @@
     tabsize=2,
     frame=single
 }
-\lstset{style=mystyle}
+\lstset{
+	style=mystyle,
+	language=C++,
+	rangeprefix=//---- ,
+	rangesuffix=----,
+	includerangemarker=false,
+	keywordstyle=\color{blue},
+	commentstyle=\color{green!60!black},
+	stringstyle=\color{red},
+	morekeywords={true, false, nullptr}
+}
 
 \newcommand{\seq}[1]{\left\langle #1 \right\rangle} 
 
@@ -244,7 +254,7 @@ Describe your own real-world example that requires sorting. Describe one that re
 \section{Insertion Sort}
 
 \begin{rem}\index{insertion sort}
-	Insertion sort is a solution to the sorting problem
+	Insertion sort is a solution to the sorting problem. An implementation is given in Listing \ref{listing:insertion_sort}.
 \end{rem}
 
 \begin{definition}[key]\index{key}
@@ -259,6 +269,16 @@ Describe your own real-world example that requires sorting. Describe one that re
 	A key and the associated satellite data.
 \end{definition}
 
+\begin{minipage}{\textwidth}
+	\lstinputlisting[language=C++, caption=Insertion Sort,linerange=begin:insertion_sort-end:insertion_sort]{code/src/insertion-sort.hpp}\label{listing:insertion_sort}
+\end{minipage}
+
+\begin{thm}
+	
+	\begin{proof}
+	
+	\end{proof}
+\end{thm}
 \appendix
 \chapter{Appendix One}
 

@@ -7,6 +7,7 @@
 // NB: we are working with reverse iterators so we can go one past the beginning
 //     but this means our index arithmetic is inverted; swaping '-' and '+' operators
 
+//----begin:insertion_sort----
 template<class T>
 void insertion_sort(T begin, T end)
 {
@@ -22,3 +23,4 @@ void insertion_sort(T begin, T end)
         *(j-1) = key;
     }
 }
+//----end:insertion_sort----

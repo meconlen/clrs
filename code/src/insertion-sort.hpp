@@ -11,7 +11,7 @@
 template<class T>
 void insertion_sort(T begin, T end)
 {
-    if(begin == end) return;
+    if(begin >= end) return;
     auto rend = std::make_reverse_iterator(begin) - 1;
     for(auto current = begin + 1; current < end; current++) {
         auto key = *current;

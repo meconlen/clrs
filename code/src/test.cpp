@@ -14,8 +14,10 @@
 TEST(insertion_sort, integers)
 {
     std::array<int, 6> a{5, 2, 4, 6, 1, 3};
+    std::array<int, 6> b{1, 2, 3, 4, 5, 6};
     insertion_sort(a.begin(), a.end());
     EXPECT_EQ(std::is_sorted(a.begin(), a.end()), true);
+    EXPECT_EQ(a, b);
     if(std::is_sorted(a.begin(), a.end()) == false) {
         for(const auto& x: a) {
             std::cout << x << std::endl;

@@ -8,11 +8,14 @@
 \usepackage{fancyhdr}
 
 \usepackage{amsthm, amsmath, amssymb, amsfonts}
+\theoremstyle{definition}
 \newtheorem{problem}{Problem}[section]
 \newtheorem{definition}{Definition}[chapter]
+\newtheorem{rem}{Remark}[chapter]
+
+\theoremstyle{plain}
 \newtheorem{thm}{Theorem}[chapter]
 \newtheorem{lem}{Lemma}[chapter]
-\newtheorem{rem}{Remark}[chapter]
 
 \pagestyle{fancy}
 \fancypagestyle{plain}{}
@@ -21,7 +24,7 @@
 	backend=biber,
 	style=ieee
 ]{biblatex}
-\addbibresource{clrs.bib}
+\addbibresource{clrs_problems.bib}
 
 \usepackage{makeidx}
 \makeindex
@@ -36,6 +39,7 @@
 	citecolor=blue,urlcolor=blue
 ]{hyperref} 
 
+\usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
 \lstdefinestyle{mystyle}{
     basicstyle=\ttfamily\footnotesize,
@@ -58,7 +62,7 @@
 	rangesuffix=----,
 	includerangemarker=false,
 	keywordstyle=\color{blue},
-	commentstyle=\color{green!60!black},
+	commentstyle=\color{ForestGreen},
 	stringstyle=\color{red},
 	morekeywords={true, false, nullptr}
 }
@@ -270,15 +274,35 @@ Describe your own real-world example that requires sorting. Describe one that re
 \end{definition}
 
 \begin{minipage}{\textwidth}
-	\lstinputlisting[language=C++, caption=Insertion Sort,linerange=begin:insertion_sort-end:insertion_sort]{code/src/insertion-sort.hpp}\label{listing:insertion_sort}
+	\lstinputlisting[
+		language=C++, 
+		firstnumber=0,
+		caption=Insertion Sort,
+		linerange=begin:insertion_sort-end:insertion_sort
+	]{code/src/insertion-sort.hpp}\label{listing:insertion_sort}
 \end{minipage}
 
+\begin{rem}
+	There are two things we prove about the algorithm in Listing \ref{listing:insertion_sort}. The first is that the iterators are valid at each step of the program. If the iterators become invalid we may trigger undefined behavior within the compiler and the program becomes incorrect. The second is that the algorithm does what we claim it does, which is sort the range of the container defined by \texttt{[begin, end)}. 
+\end{rem}
+
 \begin{thm}
-	
+	In the implementation of insertion sort in Figure \ref{listing:insertion_sort} the iterators remain inside $[\texttt{begin}, \texttt{end}]$, avoiding undefined behavior assuming \texttt{begin} and \texttt{end} are valid iterators for elements of the same container. 
 	\begin{proof}
-	
+		The implementation uses the following iterators; \texttt{begin}, \texttt{end}, \texttt{current}, \texttt{j} and \texttt{rend}. The iterators \texttt{begin} and \texttt{end} are never changed; therefore remain inside the range. 
+		
+		The iterator \texttt{current} is created and modified in line 6. The initial value is \texttt{begin + 1}. Since \texttt{begin} is less than \texttt{end} (line 4) we know that \texttt{begin + 1} is not greater than \texttt{end}. The for loop increments \texttt{current} until \texttt{current} is not less than \texttt{end} and so, as long as \texttt{current} was valid at the first iteration it remains valid in each iteration of the loop. Finally when \texttt{current} is not less than \texttt{end} it is equal to \texttt{end}, which is valid.
+		
+		The iterator \texttt{rend} is set to \texttt{begin} and decremented. NB that reverse iterators are actually pointing to the subsequent element such that when \texttt{rend} is decremented it's internally pointing to the element at \texttt{begin} and is thus valid\footnote{to put it another way for a forward iterator \texttt{i} and the reverse iterator \texttt{r} made from \texttt{i} the following relationship holds \texttt{\&*r == \&*(i - 1)} \cite{reverse_iterator} }. 
+		
+		The iterator \texttt{j} is set to a reverse iterator of \texttt{current} at line 8, which is valid. NB: \texttt{\&*j == \&*(current-1)} \cite{reverse_iterator}. We know \texttt{j} is valid when initialized by the validity of \texttt{current} and \texttt{j} points to the element to the left of \texttt{current} and \texttt{(j-1)} points to the element under \texttt{current}. We loop while \texttt{j <= rend} incrementing \texttt{j} each time, which moves it to the left since it is a reverse iterator. Recall \texttt{rend} points to the element under \texttt{begin}. This implies that \texttt{j} is valid as in each iteration \texttt{j $\in$ [begin, current)}. Moreover, since \texttt{j} is built from \texttt{current} which is strictly less than \texttt{end} the iterator \texttt{(j-1)} points to an element in the range \texttt{(begin, current]}. This shows that both \texttt{j} and \texttt{j-1} are valid throughout the loop. When the loop ends if \texttt{j == rend} we have that \texttt{j} is valid and \texttt{(j-1)} is in the range \texttt{(begin, current]} which is in the range \texttt{(begin, end]}.  
+		
+		We are left to prove that in line 12 that \texttt{(j-1) $\in$ [begin, end)}. This follows from the above with the caveat that \texttt{current} is not \texttt{end}, but this follows from the condition in line 6. 
 	\end{proof}
 \end{thm}
+
+
+
 \appendix
 \chapter{Appendix One}
 
